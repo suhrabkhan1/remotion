@@ -9,11 +9,11 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"@remotion/player": "workspace:*",
-		"@remotion/transitions": "workspace:*",
+		"@remotion/player": "4.0.435",
+		"@remotion/transitions": "4.0.435",
 		"react": "19.1.0",
 		"react-dom": "19.1.0",
-		"remotion": "workspace:*",
+		"remotion": "4.0.435",
 		"zod": "3.23.8"
 	},
 	"devDependencies": {
