@@ -160,6 +160,30 @@ import {FastUpdates} from './VisualModeTests/FastUpdates';
 import {FastUpdatesNested} from './VisualModeTests/FastUpdatesNested';
 import {VoiceVisualization} from './voice-visualization';
 import {WhisperWeb} from './WhisperWeb';
+import {
+	HookTutorialReel,
+	hookTutorialSchema,
+	hookTutorialDefaultProps,
+	BRollMontageReel,
+	bRollMontageSchema,
+	bRollMontageDefaultProps,
+	BeforeAfterDemoReel,
+	beforeAfterSchema,
+	beforeAfterDefaultProps,
+	CarouselSlideshowPost,
+	carouselSchema,
+	carouselDefaultProps,
+	QuickTipsListicleReel,
+	quickTipsSchema,
+	quickTipsDefaultProps,
+} from './InstagramTemplates';
+import {
+	REEL_WIDTH,
+	REEL_HEIGHT,
+	REEL_FPS,
+	POST_WIDTH,
+	POST_HEIGHT,
+} from './InstagramTemplates/shared';
 
 class Vector2 {
 	readonly x: number;
@@ -1901,6 +1925,78 @@ export const Index: React.FC = () => {
 				fps={30}
 				durationInFrames={2 * 60 * 30}
 			/>
+			<Folder name="instagram-templates">
+				<Composition
+					id="hook-tutorial-reel"
+					component={HookTutorialReel}
+					width={REEL_WIDTH}
+					height={REEL_HEIGHT}
+					fps={REEL_FPS}
+					schema={hookTutorialSchema}
+					defaultProps={hookTutorialDefaultProps}
+					durationInFrames={
+						hookTutorialDefaultProps.hookDurationInFrames +
+						hookTutorialDefaultProps.steps.reduce(
+							(sum, s) => sum + s.durationInFrames,
+							0,
+						) +
+						hookTutorialDefaultProps.ctaDurationInFrames
+					}
+				/>
+				<Composition
+					id="broll-montage-reel"
+					component={BRollMontageReel}
+					width={REEL_WIDTH}
+					height={REEL_HEIGHT}
+					fps={REEL_FPS}
+					schema={bRollMontageSchema}
+					defaultProps={bRollMontageDefaultProps}
+					durationInFrames={bRollMontageDefaultProps.totalDurationInFrames}
+				/>
+				<Composition
+					id="before-after-demo-reel"
+					component={BeforeAfterDemoReel}
+					width={REEL_WIDTH}
+					height={REEL_HEIGHT}
+					fps={REEL_FPS}
+					schema={beforeAfterSchema}
+					defaultProps={beforeAfterDefaultProps}
+					durationInFrames={
+						beforeAfterDefaultProps.problemDurationInFrames +
+						beforeAfterDefaultProps.transitionDurationInFrames +
+						beforeAfterDefaultProps.solutionDurationInFrames +
+						beforeAfterDefaultProps.ctaDurationInFrames
+					}
+				/>
+				<Composition
+					id="carousel-slideshow-post"
+					component={CarouselSlideshowPost}
+					width={POST_WIDTH}
+					height={POST_HEIGHT}
+					fps={REEL_FPS}
+					schema={carouselSchema}
+					defaultProps={carouselDefaultProps}
+					durationInFrames={
+						carouselDefaultProps.slides.length *
+						carouselDefaultProps.framesPerSlide
+					}
+				/>
+				<Composition
+					id="quick-tips-listicle-reel"
+					component={QuickTipsListicleReel}
+					width={REEL_WIDTH}
+					height={REEL_HEIGHT}
+					fps={REEL_FPS}
+					schema={quickTipsSchema}
+					defaultProps={quickTipsDefaultProps}
+					durationInFrames={
+						quickTipsDefaultProps.titleDurationInFrames +
+						quickTipsDefaultProps.tips.length *
+							quickTipsDefaultProps.framesPerTip +
+						quickTipsDefaultProps.ctaDurationInFrames
+					}
+				/>
+			</Folder>
 		</>
 	);
 };
